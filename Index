@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Переходник покойника</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #2d2d2d;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+        h1 {
+            color: #ff4444;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 5px #ff0000;
+        }
+        .readme-container {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-left: 4px solid #ff4444;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        .glow-text {
+            display: inline-block;
+            color: #aaa;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        .glow-text:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00ffff, 0 0 40px #00ffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Добро пожаловать в переходник покойника</h1>
+
+        <div class="readme-container" id="readme">
+            <pre>Загрузка README.md...</pre>
+        </div>
+
+        <footer>
+            <span class="glow-text">Наведи курсор, чтобы увидеть свечение!</span>
+        </footer>
+    </div>
+
+    <script>
+        // Загружаем содержимое README.md и отображаем его
+        fetch('README.md')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Файл README.md не найден');
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('readme').innerHTML = `<pre>${data}</pre>`;
+            })
+            .catch(error => {
+                document.getElementById('readme').innerHTML =
+                    `<pre>Ошибка загрузки README.md: ${error.message}</pre>`;
+            });
+    </script>
+</body>
+</html>
